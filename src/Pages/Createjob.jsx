@@ -3,21 +3,35 @@ import { useForm } from "react-hook-form";
 import CreatableSelect from "react-select/creatable";
 
 export const Createjob = () => {
-  const[selectedOption,setSelectedoption] = useState(null);
+  const [selectedOption, setSelectedoption] = useState(null);
   const {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm();
 
   const onSubmit = (data) => {
     data.skills = selectedOption;
-    console.log(data);
+    //console.log(data);
+    fetch("http://localhost:5000/post_job", {
+      method: "POST",
+      headers: { "content-Type": "application/json" },
+      body: JSON.stringify(data)
+    })
+      .then((res) => res.json())
+      .then((result) => {
+        console.log(result);
+        if(result.acknowledged === true){
+          alert("job posted successfully")
+        }
+        reset()
+      });
   };
 
   const options = [
     { value: "javaScript", label: "javaScript" },
-    { value: "c++", labeel: "c++" },
+    { value: "c++", label: "c++" },
     { value: "HTML", label: "HTML" },
     { value: "CSS", label: "CSS" },
     { value: "React", label: "React" },
