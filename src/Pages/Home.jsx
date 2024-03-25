@@ -3,6 +3,7 @@ import Banner from "../Components/Banner";
 import Card from "../Components/Card";
 import Jobs from "./Jobs";
 import Sidebar from "../Sidebar/Sidebar";
+import { Newsletter } from "../Components/Newsletter";
 
 const Home = () => {
   const [selectCategory, setSelectCategory] = useState(null);
@@ -29,7 +30,7 @@ const Home = () => {
 
   //filter jobs by title
   const filteredItems = jobs.filter(
-    (job) => job.jobTitle.toLowerCase().indexOf(query.toLowerCase()) == -1
+    (job) => job.jobTitle.toLowerCase().indexOf(query.toLowerCase()) != -1
   );
 
   //---------- Radio filtering--------
@@ -147,7 +148,7 @@ const Home = () => {
             ""
           )}
         </div>
-        <div className=" bg-white p-4 rounded">right</div>
+        <div className=" bg-white p-4 rounded"><Newsletter/></div>
       </div>
     </>
   );
