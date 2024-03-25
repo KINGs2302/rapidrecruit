@@ -1,4 +1,3 @@
-import { Input } from "postcss";
 import React from "react";
 import { FaEnvelopeOpenText, FaRocket } from "react-icons/fa6";
 
@@ -43,7 +42,7 @@ export const Newsletter = () => {
         <div className=" w-full space-y-4">
           <input
             type="submit"
-            value={"Uploud your resume "}
+            value={"Uploud your resume"}
             className=" w-full block py-2 pl-3 border focus:outline-none bg-blue rounded-sm text-white cursor-pointer font-semibold"
           />
         </div>
