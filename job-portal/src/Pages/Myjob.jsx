@@ -1,7 +1,9 @@
 import  { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { useUser } from "@clerk/clerk-react";
 
 export const Myjob = () => {
+   const { user } = useUser();
   const [jobs, setJobs] = useState([]);
   const [searchText, setSearchText] = useState("");
   const [isLoading, setIsLoading] = useState(true);
@@ -12,15 +14,18 @@ export const Myjob = () => {
 
   useEffect(() => {
     setIsLoading(true);
-    
-    // Use the user's email or ID to fetch their specific jobs
-    const userEmail = user?.email; // Get the signed-in user's email
-    fetch(`https://rapidrecruit.onrender.com/all-jobs?postedBy=${userEmail}`) // Update the API endpoint as necessary
-      .then((res) => res.json())
-      .then((data) => {
-        setJobs(data);
-        setIsLoading(false);
-      });
+if (user) {
+      const userEmail = user.email; // Get the signed-in user's email
+      fetch(`https://rapidrecruit.onrender.com/all-jobs?postedBy=${userEmail}`)
+        .then((res) => res.json())
+        .then((data) => {
+          setJobs(data);
+          setIsLoading(false);
+        });
+    } else {
+      setJobs([]); // Clear jobs if user is not signed in
+      setIsLoading(false);
+    }
   }, [searchText, user]);
 
   // pagination
