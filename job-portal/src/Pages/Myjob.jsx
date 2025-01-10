@@ -12,13 +12,16 @@ export const Myjob = () => {
 
   useEffect(() => {
     setIsLoading(true);
-    fetch(`https://rapidrecruit.onrender.com/all-jobs/${userId}`)
+    
+    // Use the user's email or ID to fetch their specific jobs
+    const userEmail = user?.email; // Get the signed-in user's email
+    fetch(`https://rapidrecruit.onrender.com/all-jobs?postedBy=${userEmail}`) // Update the API endpoint as necessary
       .then((res) => res.json())
       .then((data) => {
         setJobs(data);
         setIsLoading(false);
       });
-  }, [userId, searchText]);
+  }, [searchText, user]);
 
   // pagination
   const indexofLasItem = currentPage * itemsPerPage;
