@@ -14,7 +14,7 @@ export const Createjob = () => {
   const onSubmit = (data) => {
     data.skills = selectedOption;
     //console.log(data);
-    fetch("http://localhost:5000/post_job", {
+    fetch("https://rapidrecruit.onrender.com/post_job", {
       method: "POST",
       headers: { 'content-Type': 'application/json' },
       body: JSON.stringify(data)
