@@ -12,7 +12,7 @@ export const Myjob = () => {
 
   useEffect(() => {
     setIsLoading(true);
-    fetch("http://localhost:5000/myjobs/jainishrupala@gmail.com")
+    fetch("https://rapidrecruit.onrender.com/all-jobs/${id}")
       .then((res) => res.json())
       .then((data) => {
         setJobs(data);
