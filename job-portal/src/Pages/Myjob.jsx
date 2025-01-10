@@ -48,7 +48,7 @@ export const Myjob = () => {
   };
 
   const handleDelete = (id) => {
-    fetch(`http://localhost:5000/job/${id}`, { method: "DELETE" })
+    fetch(`https://rapidrecruit.onrender.com/job/${id}`, { method: "DELETE" })
       .then((res) => res.json())
       .then((data) => {
         if (data.acknowledged === true) {
