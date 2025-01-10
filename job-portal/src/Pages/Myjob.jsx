@@ -12,13 +12,13 @@ export const Myjob = () => {
 
   useEffect(() => {
     setIsLoading(true);
-    fetch("https://rapidrecruit.onrender.com/all-jobs/${id}")
+    fetch(`https://rapidrecruit.onrender.com/all-jobs/${userId}`)
       .then((res) => res.json())
       .then((data) => {
         setJobs(data);
         setIsLoading(false);
       });
-  }, [searchText]);
+  }, [userId, searchText]);
 
   // pagination
   const indexofLasItem = currentPage * itemsPerPage;
